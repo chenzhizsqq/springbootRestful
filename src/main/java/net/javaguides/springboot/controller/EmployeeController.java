@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin("*")      //是Spring Boot中的一个注解，它用于解决跨域访问的问题。restful中常用
 @RestController
 @RequestMapping("/api/v1/employees")
 public class EmployeeController {
@@ -20,7 +20,7 @@ public class EmployeeController {
 
     //获取全部数据  R
     @GetMapping
-    public List<Employee> getAllEmployees(){
+    public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
 
@@ -34,7 +34,7 @@ public class EmployeeController {
     //对应ID 获取  R
     // build get employee by id REST API
     @GetMapping("{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable  long id){
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable long id) {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + id));
         return ResponseEntity.ok(employee);
@@ -43,7 +43,7 @@ public class EmployeeController {
     //对应ID 更新  U
     // build update employee REST API
     @PutMapping("{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable long id,@RequestBody Employee employeeDetails) {
+    public ResponseEntity<Employee> updateEmployee(@PathVariable long id, @RequestBody Employee employeeDetails) {
         Employee updateEmployee = employeeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
 
@@ -59,7 +59,7 @@ public class EmployeeController {
     //对应ID删除  D
     // build delete employee REST API
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable long id){
+    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable long id) {
 
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
