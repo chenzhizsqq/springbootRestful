@@ -16,11 +16,11 @@ public class EmployeeWebController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @RequestMapping("/employeeData")                      //能够通过，http://localhost:8080/employeeData，去访问
+    @RequestMapping("/employee")                      //能够通过，http://localhost:8080/employee，去访问
     public ModelAndView getData() {
         ModelAndView mv = new ModelAndView();
         List<Employee> data = employeeRepository.findAll();
-        mv.addObject("employeeData", data);     //把数据添加到，http://localhost:8080/employeeData，去
+        mv.addObject("employeeData", data);     //把数据添加到，页面中的employeeData对象去
         mv.setViewName("employeeView");                     //使用employeeView.html模板去显示
         return mv;
     }
